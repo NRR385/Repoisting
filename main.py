@@ -1,12 +1,14 @@
 """
 Reposting - A modular content reposting automation toolkit.
 
-Entry point shim — delegates to the CLI package.
-Run directly:  python main.py
-Run as module: python -m reposting
+This project is currently under development.
 """
 
-from reposting.cli.commands import main
+
+def main() -> None:
+    """Display the current project status."""
+    print("🚧 Reposting is coming soon!")
+
 
 if __name__ == "__main__":
     main()
