@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "reposting"
+version = "0.1.0"
+description = "A modular content reposting automation toolkit."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "NRR385" }]
+requires-python = ">=3.11"
+keywords = ["reposting", "automation", "content", "cli", "scheduler"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Utilities",
+]
+
+# No runtime dependencies in MVP.
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.4",
+]
+# Scheduling support (Phase 8, post-MVP)
+scheduler = [
+    "APScheduler>=3.10",
+]
+
+[project.scripts]
+reposting = "reposting.cli.commands:main"
+
+[project.urls]
+Homepage = "https://github.com/NRR385/Reposting"
+Repository = "https://github.com/NRR385/Reposting"
+"Bug Tracker" = "https://github.com/NRR385/Reposting/issues"
+
+# ---------------------------------------------------------------------------
+# Tool configuration
+# ---------------------------------------------------------------------------
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--tb=short -q"
+
+[tool.coverage.run]
+source = ["reposting"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 80
